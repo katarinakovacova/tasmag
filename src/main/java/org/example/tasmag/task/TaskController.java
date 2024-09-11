@@ -1,4 +1,4 @@
-package org.example.tasmag;
+package org.example.tasmag.task;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
