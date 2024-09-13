@@ -22,7 +22,7 @@ public class Task {
     /**
      * Description of the task.
      */
-    private String taskDescription;
+    private String description;
 
     /**
      * The date and the time when task was created.
@@ -45,9 +45,9 @@ public class Task {
         this.status = TaskStatus.PENDING;
     }
 
-    public Task(String name, String taskDescription, LocalDateTime dueDate, TaskStatus status) {
+    public Task(String name, String description, LocalDateTime dueDate, TaskStatus status) {
         this.name = name;
-        this.taskDescription = taskDescription;
+        this.description = description;
         this.createdAt = LocalDateTime.now();
         this.dueDate = dueDate;
         this.status = status;
@@ -69,12 +69,12 @@ public class Task {
         this.name = name;
     }
 
-    public String getTaskDescription() {
-        return taskDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setTaskDescription(String taskDescription) {
-        this.taskDescription = taskDescription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public LocalDateTime getCreatedAt() {
