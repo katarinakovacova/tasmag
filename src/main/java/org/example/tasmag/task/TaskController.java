@@ -20,33 +20,41 @@ public class TaskController {
         return ResponseEntity.ok(taskService.findAllTasks());
     }
 
-    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/{id}",
+            produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Task> getTaskById(@PathVariable Long id) {
-        return ResponseEntity.of(taskService.findTaskById(id));
+        return taskService.findTaskById(id)
+                .map(task -> ResponseEntity.ok().body(task))
+                .orElse(ResponseEntity.notFound().build());
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Task> createTask(@RequestBody Task task) {
-        return new ResponseEntity<>(taskService.saveTask(task), HttpStatus.CREATED);
+        Task savedTask = taskService.saveTask(task);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedTask);
     }
 
-    @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/{id}",
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Task> updateTask(@PathVariable Long id, @RequestBody Task task) {
-        if (taskService.existsById(id)) {
-            task.setId(id);
-            Task updatedTask = taskService.saveTask(task);
-            return ResponseEntity.ok(updatedTask);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        return taskService.findTaskById(id)
+                .map(existingTask -> {
+                    task.setId(id);
+                    Task updatedTask = taskService.saveTask(task);
+                    return ResponseEntity.status(HttpStatus.OK).body(updatedTask);
+                })
+                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTask(@PathVariable Long id) {
-        if (!taskService.existsById(id)) {
-            return ResponseEntity.notFound().build();
+        if (taskService.existsById(id)) {
+            taskService.deleteTask(id);
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         }
-        taskService.deleteTask(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 }
