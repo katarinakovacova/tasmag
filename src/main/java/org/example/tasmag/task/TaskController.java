@@ -6,8 +6,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * Rest Controller for managing Task resources.
- * Handles HTTP request and delegates business logic to TaskService.
+ * TaskController manages task-related HTTP requests such as retrieving, creating, updating, and deleting tasks.
+ * It provides endpoints to work with task data in the system.
+ * <p>
+ * Endpoints:
+ * <ul>
+ *     <li>GET /api/v1/tasks - retrieves a list of all tasks</li>
+ *     <li>POST /api/v1/tasks - creates a new task</li>
+ *     <li>GET /api/v1/tasks/{id} - retrieves a task by ID</li>
+ *     <li>PUT /api/v1/tasks/{id} - updates a task by ID</li>
+ *     <li>DELETE /api/v1/tasks/{id} - deletes a task by ID</li>
+ * </ul>
  */
 @RestController
 @RequestMapping("/api/v1/tasks")

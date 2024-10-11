@@ -2,8 +2,10 @@ package org.example.tasmag.user;
 
 import jakarta.persistence.*;
 
-import java.util.Objects;
-
+/**
+ * Entity representing a User in the system.
+ * Contains basic user information such as username, email, and password.
+ */
 @Entity
 @Table(name = "users")
 public class User {
@@ -16,9 +18,19 @@ public class User {
     private String email;
     private String password;
 
+    /**
+     * Default constructor for JPA.
+     */
     public User() {
     }
 
+    /**
+     * Constructs a new User with the provided username, email, and password.
+     *
+     * @param username The username of the user.
+     * @param email The email address of the user.
+     * @param password The password for the user account.
+     */
     public User(String username, String email, String password) {
         this.username = username;
         this.email = email;
