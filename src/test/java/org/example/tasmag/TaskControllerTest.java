@@ -21,6 +21,24 @@ import java.time.LocalDateTime;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+/**
+ * This class contains integration tests for the TaskController in the Tasmag application.
+ * It uses MockMvc to simulate HTTP requests and verify the behavior of the task management API.
+ *
+ * The tests cover:
+ * - Creating tasks using POST requests.
+ * - Retrieving all tasks and individual tasks by ID using GET requests.
+ * - Updating tasks by ID using PUT requests.
+ * - Deleting tasks by ID using DELETE requests.
+ *
+ * Annotations:
+ * - @SpringBootTest: Loads the full application context for testing.
+ * - @AutoConfigureMockMvc: Auto-configures the MockMvc object for simulating HTTP requests.
+ * - @TestPropertySource: Loads test-specific properties from the application-test.properties file.
+ *
+ * Transactional and rollback are applied to ensure test isolation and avoid persistence of test data.
+ */
+
 @SpringBootTest
 @AutoConfigureMockMvc
 @TestPropertySource("classpath:application-test.properties")
