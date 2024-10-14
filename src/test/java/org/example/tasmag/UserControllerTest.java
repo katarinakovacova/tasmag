@@ -18,6 +18,23 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+/**
+ * This class contains integration tests for the UserController in the Tasmag application.
+ * It uses MockMvc to simulate HTTP requests and verify the behavior of the user management API.
+ *
+ * The tests cover:
+ * - Creating users using POST requests.
+ * - Retrieving all users and individual users by ID using GET requests.
+ * - Deleting users by ID using DELETE requests.
+ *
+ * Annotations:
+ * - @SpringBootTest: Loads the full application context for testing.
+ * - @AutoConfigureMockMvc: Auto-configures the MockMvc object for simulating HTTP requests.
+ * - @TestPropertySource: Loads test-specific properties from the application-test.properties file.
+ *
+ * Transactional and rollback mechanisms are applied to ensure test isolation and prevent test data persistence.
+ */
+
 @SpringBootTest
 @AutoConfigureMockMvc
 @TestPropertySource("classpath:application-test.properties")
