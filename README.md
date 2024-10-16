@@ -58,3 +58,8 @@ This project follows a microservice architecture with distinct services for diff
 - Docker
 - PostgreSQL
 - Gradle/Maven (depending on your preference for Java/Kotlin projects)
+
+## Contact
+
+For any questions or support, please contact [Katarína Kováčová](mailto:katarinakovacova100@gmail.com).
+
